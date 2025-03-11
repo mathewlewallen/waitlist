@@ -16,9 +16,15 @@
 # next.js
 /.next/
 /out/
+next-env.d.ts
 
 # production
 /build
+
+# database
+/prisma/db.sqlite
+/prisma/db.sqlite-journal
+db.sqlite
 
 # misc
 .DS_Store
@@ -31,7 +37,8 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env*.local
+.env
 
 # vercel
 .vercel
@@ -42,3 +49,6 @@ next-env.d.ts
 
 # clerk configuration (can include secrets)
 /.clerk/
+
+# idea files
+*.idea

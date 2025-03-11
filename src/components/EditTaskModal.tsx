@@ -5,7 +5,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from 'next/navigation';
-import { updateTask, toggleTask, deleteTask } from '../actions';
+import { updateTask, toggleTask, deleteTask } from '../app/app/actions';
 import { Folder, MoreVertical, Trash2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -24,7 +24,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Task } from '../models';
+import { Task } from '../app/app/models';
 
 interface Props {
   task: Task;

@@ -1,11 +1,12 @@
-import { Waitlist } from '@clerk/nextjs'
+import { Card } from '@/components/ui/card'
 import React from 'react'
 
 function WaitlistPage() {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Waitlist />
-    </div>
+    <Card className="p-2 flex gap-2 flex-col">
+      <h1 className='text-xl font-bold'>You&apos;re on the waitlist!</h1>
+      <div>You&apos;ll be notified when you&apos;ve been accepted to test out Cooking with Clerk.</div>
+    </Card>
   )
 }
 

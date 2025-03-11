@@ -1,10 +1,18 @@
 import Link from "next/link";
 import { auth } from "@clerk/nextjs/server";
+import { api, HydrateClient } from "@/trpc/server";
+
 
 export default async function Home() {
   const { userId } = await auth();
+  const hello = await api.post.hello({ text: "from tRPC" });
 
+  if (userId) {
+    void api.post.getLatest.prefetch();
+  }
+  
   return (
+    <HydrateClient>
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center text-center max-w-2xl">
         <div className="px-6 py-2 rounded-full bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm shadow-sm">
@@ -27,4 +35,5 @@ export default async function Home() {
       </main>
     </div>
   );
-}
+      </HydrateClient>
+)}

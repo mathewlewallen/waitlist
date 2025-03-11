@@ -8,7 +8,7 @@ import CreateProjectButton from './CreateProjectButton';
 import ProjectLink from './ProjectLink';
 import { useProjectStore } from '@/lib/store';
 import { UserButton } from '@clerk/nextjs';
-import { getProjects } from '../actions';
+import { getProjects } from '../app/app/actions';
 
 function Sidebar() {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
@@ -17,7 +17,7 @@ function Sidebar() {
   React.useEffect(() => {
     // Only fetch if we don't have projects yet
     if (projects.length === 0) {
-      getProjects().then(setProjects);
+      void getProjects().then(setProjects);
     }
   }, [projects.length, setProjects]);
 

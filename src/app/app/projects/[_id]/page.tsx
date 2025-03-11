@@ -2,7 +2,7 @@ import React from 'react'
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
 import { notFound, redirect } from "next/navigation";
-import TaskList from '../../components/TaskList';
+import TaskList from '../../../../components/TaskList';
 
 interface ProjectPageProps {
   params: Promise<{

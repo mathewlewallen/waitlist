@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { toggleTask } from '../actions';
+import { toggleTask } from '../app/app/actions';
 import EditTaskModal from './EditTaskModal';
 import { cn } from '@/lib/utils';
 import { Task } from '@prisma/client';

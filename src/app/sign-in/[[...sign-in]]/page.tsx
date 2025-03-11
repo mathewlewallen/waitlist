@@ -3,7 +3,7 @@ import React from 'react'
 
 function SignInPage() {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className='flex flex-col items-center gap-4'>
       <SignIn />
     </div>
   )

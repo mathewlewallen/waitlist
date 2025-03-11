@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
     darkMode: ["class"],
@@ -9,7 +10,11 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+  		},
   		colors: {
+			primary: '#0CC0DF',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -56,22 +61,22 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-  		keyframes: {
-  			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
-  			},
-  			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
+		  keyframes: {
+			"accordion-down": {
+			  from: { height: "0" },
+			  to: { height: "var(--radix-accordion-content-height)" },
+			},
+			"accordion-up": {
+			  from: { height: "var(--radix-accordion-content-height)" },
+			  to: { height: "0" },
+			},
+			shimmer: {
+			  "0%, 90%, 100%": {
+				"background-position": "calc(-100% - var(--shimmer-width)) 0",
+			  },
+			  "30%, 60%": {
+				"background-position": "calc(100% + var(--shimmer-width)) 0",
+			  },
   			}
   		},
   		animation: {
@@ -80,5 +85,6 @@ export default {
   		}
   	}
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

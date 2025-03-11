@@ -20,10 +20,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { deleteProject } from '../actions';
+import { deleteProject } from '../app/app/actions';
 import { useProjectStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
-import { Project } from '../models';
+import { Project } from '../app/app/models';
 
 interface Props {
   project: Project;

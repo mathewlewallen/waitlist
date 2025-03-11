@@ -4,11 +4,11 @@ import React, { useCallback, useEffect } from 'react';
 import TaskCard from './TaskCard';
 import CreateTaskInput from './CreateTaskInput';
 import { Input } from '@/components/ui/input';
-import { updateProject } from '../actions';
+import { updateProject } from '../app/app/actions';
 import { useRouter } from 'next/navigation';
 import { cn, debounce } from '@/lib/utils';
 import { useProjectStore } from '@/lib/store';
-import { Task } from '@prisma/client';
+import { type Task } from '@prisma/client';
 
 interface Props {
   title: string;
@@ -27,9 +27,9 @@ export default function TaskList({ title, tasks, projectId }: Props) {
 
   // Create a stable reference to the debounced function
   const { updateProject: updateProjectInStore } = useProjectStore();
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedUpdate = useCallback(
-    debounce(async (newTitle: string) => {
+    debounce((newTitle: string) => void (async () => {
       if (!projectId || !newTitle.trim() || newTitle === title) return;
 
       try {
@@ -38,17 +38,16 @@ export default function TaskList({ title, tasks, projectId }: Props) {
         formData.append('id', projectId);
         formData.append('name', newTitle.trim());
         await updateProject(formData);
-        // Update the store
         updateProjectInStore(projectId, { name: newTitle.trim() });
         router.refresh();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
-        // If there's an error, reset to the original title
         setEditedTitle(title);
       } finally {
         setIsSubmitting(false);
       }
-    }, 500),
-    [projectId, title, updateProjectInStore]
+    })(), 500),
+    [projectId, title, updateProjectInStore, router]
   );
 
   return (
